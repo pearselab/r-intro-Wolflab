@@ -13,6 +13,8 @@ c(1,2, "three")
 ## Bonus exercises #############################
 ################################################
 
+# Paul is adding some uselss text now
+
 bonus.text <- "It was the best of times, it was the worst of times, it was the age of
 wisdom, it was the age of foolishness, it was the epoch of belief, it
 was the epoch of incredulity, it it was the season of Light, it was the
