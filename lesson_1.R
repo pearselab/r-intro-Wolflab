@@ -9,6 +9,19 @@ c(c(1,2,3), c(4,5,6))
 #     - they need to be of the same type, though!
 c(1,2, "three")
 
+
+#OK - here we go
+# cat in R
+# Well, I thought I understood this until I read the help file. I had already read that c means
+# concatenate. Now I find that cat aloso means concatenate. 
+# would be nice if different functions had different names
+# cat seems to join things and send the joined stuff to screen.  Let's try:
+cat("hello", " world")
+# now:
+x = c("hello", " world")
+x
+#ok - this is starting to make a little sense
+
 ################################################
 ## Bonus exercises #############################
 ################################################
