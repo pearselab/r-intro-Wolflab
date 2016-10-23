@@ -27,7 +27,7 @@ for (i in 20:10){
 is_prime <- function(num) {
   if (num == 2) {
     TRUE
-  } else if (any(num %% 2:(num-1) == 0)) {
+  } else if (any(num %% 2:(num-1) == 0)) {# see example function of a"any"
     FALSE
   } else { 
     TRUE
@@ -112,3 +112,22 @@ plot(d,type="o", col = ifelse(d < a,'black',ifelse(b, 'blue', "red")), xlab="Gen
 # statement and see what you get. Using this construction may make this simpler.
 
 # I am starting to suspect that either my initial function is not working, or I am missing a key element
+# taking too much time. I now see that I need to build a separate function to determine col
+
+# 9. Write a function that draws boxes of a specified width and height that look like this (height 3, width 5):
+#   *****
+#   *   *
+#   *****
+
+draw_box <- function(height,width){
+  cat(paste(replicate(width, "*"), collapse = "")) #This is the top line
+  cat("\n") # new line
+  for(i in 3:height){
+    cat("*", paste(replicate((width-4), " "), collapse = ""), "*", "\n") # draw the sides for middle rows
+  }
+  cat(paste(replicate(width, "*"), collapse = "")) 
+}
+draw_box(4,14)
+
+#10.
+
