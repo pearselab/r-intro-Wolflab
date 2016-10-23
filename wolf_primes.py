@@ -10,7 +10,7 @@ def is_prime(numb):
     return answer
  
 # Let us  test            
-x = 4
+x = 199
 if is_prime(x):
     print( x, "is prime")
 else:

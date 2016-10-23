@@ -23,22 +23,22 @@ for (i in 20:10){
 #3. Write a function that calculates whether a number is a prime number (hint: what does 2 %% 3 give you?)
 # The hint didn't help.
 
-is_prime <- function(x){
-  for (i in x-1:3){
-    if (x %% i == 0){
-        answer <- FALSE
-        break
-  } else {
-      answer <- TRUE
-        }
-  } {return(answer)}
+
+is_prime <- function(num) {
+  if (num == 2) {
+    TRUE
+  } else if (any(num %% 2:(num-1) == 0)) {
+    FALSE
+  } else { 
+    TRUE
+  }
 }
 
-b <- 10
+b <- 37
 if(is_prime(b)){
-  print ("is prime")
+  cat(b, "is prime")
 } else {
-  print("is not prime")
+  cat(b, "is not prime")
 }
 
 
