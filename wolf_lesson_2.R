@@ -99,5 +99,6 @@ get_pop_growth_list <- function(final_time,a,b,c){
   return(pop_growth_list)
 }
 
+d = get_pop_growth_list(30,2000,3000,2)
+plot(d,type="o", col = ifelse(d < 550,'red','green'), xlab="Generation", ylab = "population size") # that was easy
 
-plot(get_pop_growth_list(30,2000,3000,2),type="o", xlab="Generation", ylab = "population size") # that was easy
