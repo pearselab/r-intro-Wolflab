@@ -64,3 +64,14 @@ for (i in 1:20){
     cat(i, "\n")
   }
 }
+
+# A biologist is modelling population growth using a Gompertz curve, which is defined as y(t) = a.e−b.e−c.t
+# where y is population size, t is time, a and b are parameters, and e is the exponential function. Write
+# them a function that calculates population size at any time for any values of its parameters.
+
+pop_size_at_t <- function(t, a, b, c){
+  y = a*(exp(-b*(exp(-c*t))))
+  return(y)
+}
+print(pop_size_at_t(194,20,33,22))
+# Well, I think the above is working
