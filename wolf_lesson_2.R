@@ -46,3 +46,21 @@ if(is_prime(b)){
 # 4. Write a loop that prints out the numbers from 1 to 20, printing “Good: NUMBER” if the number is
 # divisible by five and “Job: NUMBER” if then number is prime, and nothing otherwise.
 
+div_by_five <- function(x) {
+  if(x %% 5 == 0) {
+    return(TRUE)
+  }else{
+    return(FALSE)
+  }
+}
+  
+
+for (i in 1:20){
+  if (div_by_five(i)){
+    cat("Good: ",i, "\n")
+  }else if(is_prime(i)){
+    cat("job: ", i, "\n")
+  }else{
+    cat(i, "\n")
+  }
+}
