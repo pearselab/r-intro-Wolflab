@@ -1,5 +1,5 @@
 from __future__ import print_function
-# just seeing if I can write a function that tests for primeness in Python. Only works if numb > 4
+# just seeing if I can write a function that tests for primeness in Python. Only works if numb > 4.
 def is_prime(numb):
     for i in range(numb-1,2,-1):
         if numb % i == 0:

@@ -65,7 +65,7 @@ for (i in 1:20){
   }
 }
 
-# A biologist is modelling population growth using a Gompertz curve, which is defined as y(t) = a.e−b.e−c.t
+# 4. A biologist is modelling population growth using a Gompertz curve, which is defined as y(t) = a.e−b.e−c.t
 # where y is population size, t is time, a and b are parameters, and e is the exponential function. Write
 # them a function that calculates population size at any time for any values of its parameters.
 
@@ -74,4 +74,14 @@ pop_size_at_t <- function(t, a, b, c){
   return(y)
 }
 print(pop_size_at_t(194,20,33,22))
-# Well, I think the above is working
+# Well, I think the above is working, but have some doubts
+
+# 5. The biologist likes your function so much they want you to write another function that plots the progress
+# of the population over a given length of time. Write it for them.
+
+pop_size_over_time <- function(final_time,a,b,c){
+  for (i in 1:final_time){
+    cat(i, ",", pop_size_at_t(i, a, b, c), "\n")
+  }
+}
+pop_size_over_time(20,1,133,122)# still don't like look of output
