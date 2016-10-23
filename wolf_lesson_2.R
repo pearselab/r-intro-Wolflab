@@ -131,3 +131,25 @@ draw_box(4,14)
 
 #10.
 
+draw_text_box <- function(height,width, text){
+  if(nchar(text) > width-4){
+    return("text too long")
+  }
+  cat(paste(replicate(width, "*"), collapse = "")) #This is the top line
+  cat("\n") # new line
+  mid <- function(height){
+    return (floor((height-2)/2))
+  }
+  for(i in 1:mid(height)){#draw sides above text
+    cat("*", paste(replicate((width-4), " "), collapse = ""), "*", "\n") # draw the sides for middle rows
+  }
+  cat("*", text, paste(replicate(((width-5)-nchar(text)), " "), collapse = ""), "*","\n")
+  for(i in 1:mid(height)){#draw sides below text
+    cat("*", paste(replicate((width-4), " "), collapse = ""), "*", "\n") # draw the sides for middle rows
+  }
+  cat(paste(replicate(width, "*"), collapse = "")) 
+}
+draw_text_box(11,114, "1234")
+
+# OK - this is getting a bit tedious. I mean, I do see how it is helping with functions and indexing
+
