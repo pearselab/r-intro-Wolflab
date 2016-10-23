@@ -84,4 +84,20 @@ pop_size_over_time <- function(final_time,a,b,c){
     cat(i, ",", pop_size_at_t(i, a, b, c), "\n")
   }
 }
-pop_size_over_time(20,1,133,122)# still don't like look of output
+#pop_size_over_time(30,2000,3000,2)# still don't like look of output
+
+# 6. The biologist likes your function so much they want you to write another function that plots the progress
+# of the population over a given length of time. Write it for them.
+
+
+get_pop_growth_list <- function(final_time,a,b,c){
+  pop_growth_list <- c()#create empty list
+  for (i in 1:final_time){
+    current_pop_size <- pop_size_at_t(i, a, b, c)
+    pop_growth_list <- c(pop_growth_list, current_pop_size)#add to growing list
+  }
+  return(pop_growth_list)
+}
+
+
+plot(get_pop_growth_list(30,2000,3000,2),type="o", xlab="Generation", ylab = "population size") # that was easy
