@@ -106,4 +106,9 @@ d = get_pop_growth_list(final_time,a,b,c)
 
 plot(d,type="o", col = ifelse(d < a,'black',ifelse(b, 'blue', "red")), xlab="Generation", ylab = "population size") # that was easy
 
-pop_size_over_time(final_time,a,b,c)
+#pop_size_over_time(final_time,a,b,c)
+# 8. You are beginning to suspect the biologist is taking advantage of you. Modify your function to plot in
+# purple any y value that’s above a and b. Hint: try putting 3==3 & 2==2 and 3==4 | 2==2 into an if
+# statement and see what you get. Using this construction may make this simpler.
+
+# I am starting to suspect that either my initial function is not working, or I am missing a key element
