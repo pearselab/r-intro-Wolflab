@@ -164,6 +164,7 @@ draw_text_box(9,24, "1234")
 # is a special case of what distribution?...
 
 
-presence <- function(numb_sites, p){
-  plot(rbinom(numb_sites, 100, p))
+prob_presence <- function(numb_sites, p){
+  return(rbinom(1, numb_sites, p))
 }
+prob_presence(100, 0.1)
