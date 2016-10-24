@@ -56,7 +56,10 @@ div_by_five <- function(x) {
   
 
 for (i in 1:20){
-  if (div_by_five(i)){
+  if(i == 5){
+    cat("Damn Good Job", i, "\n")
+  }
+  else if (div_by_five(i)){
     cat("Good: ",i, "\n")
   }else if(is_prime(i)){
     cat("job: ", i, "\n")
