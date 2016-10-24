@@ -100,8 +100,8 @@ get_pop_growth_list <- function(final_time,a,b,c){
 }
 final_time <- 30
 a <- 2000
-b <- 100
-c <- 30
+b <- 50
+c <- 0.4
 d = get_pop_growth_list(final_time,a,b,c)
 
 plot(d,type="o", col = ifelse(d < a,'black',ifelse(b, 'blue', "red")), xlab="Generation", ylab = "population size") # that was easy
@@ -130,6 +130,9 @@ draw_box <- function(height,width){
 draw_box(4,14)
 
 #10.
+mid <- function(height){
+  return (floor((height-2)/2))
+}
 
 draw_text_box <- function(height,width, text){
   if(nchar(text) > width-4){
@@ -137,9 +140,6 @@ draw_text_box <- function(height,width, text){
   }
   cat(paste(replicate(width, "*"), collapse = "")) #This is the top line
   cat("\n") # new line
-  mid <- function(height){
-    return (floor((height-2)/2))
-  }
   for(i in 1:mid(height)){#draw sides above text
     cat("*", paste(replicate((width-4), " "), collapse = ""), "*", "\n") # draw the sides for middle rows
   }
@@ -149,7 +149,20 @@ draw_text_box <- function(height,width, text){
   }
   cat(paste(replicate(width, "*"), collapse = "")) 
 }
-draw_text_box(11,114, "1234")
+draw_text_box(9,24, "1234")
 
 # OK - this is getting a bit tedious. I mean, I do see how it is helping with functions and indexing
+# I am also noticing that my function is starting to get rather long and I should break it down further
 
+# 12. In ecology, hurdle models are often used to model the abundance of species found on surveys. They
+# first model the probability that a species will be present at a site (drawn, for example, from a Bernoulli
+# distribution) and then model the abundance for any species that is present 
+# (drawn, for example, from the Poisson distribution). Write a function that simulates 
+# the abundance of a species at n sites given a probability of presence (p) and that its abundance
+# is drawn from a Poisson with a given λ. Hint: there is no Bernoulli distribution in R, but the Bernoulli
+# is a special case of what distribution?...
+
+
+presence <- function(numb_sites, p){
+  plot(rbinom(numb_sites, 100, p))
+}
