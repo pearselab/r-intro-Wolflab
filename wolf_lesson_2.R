@@ -21,7 +21,7 @@ for (i in 20:10){
 }
 
 #3. Write a function that calculates whether a number is a prime number (hint: what does 2 %% 3 give you?)
-# The hint didn't help.
+# The hint didn't help. I had to cheat and copy from internet.
 
 
 is_prime <- function(num) {
