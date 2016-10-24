@@ -60,8 +60,6 @@ for (i in 1:20){
     cat("Good: ",i, "\n")
   }else if(is_prime(i)){
     cat("job: ", i, "\n")
-  }else{
-    cat(i, "\n")
   }
 }
 
