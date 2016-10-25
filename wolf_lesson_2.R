@@ -1,4 +1,22 @@
 # 22 Oct 2016. start 9:20 am
+
+#First some notes from lecture:
+
+# Have to change the acutal index to make changes permanent!
+unchanged <- changed <- c("a", "c", "e")
+for(each in changed){
+  each <- toupper(each)
+  print(each)
+} 
+identical(changed, unchanged) #No change has happened
+changed
+
+for(i in 1:length(changed)){
+  changed[i] <- toupper(changed[i])
+}
+identical(changed, unchanged) #Success!
+changed
+
 #2.6 Exercises
 #1. Write a loop that prints out the numbers from 20 to 10
 for (i in 20:10){
@@ -126,7 +144,7 @@ draw_box <- function(height,width){
   for(i in 3:height){
     cat("*", paste(replicate((width-4), " "), collapse = ""), "*", "\n") # draw the sides for middle rows
   }
-  cat(paste(replicate(width, "*"), collapse = "")) 
+  cat(paste(replicate(width, "*"), collapse = ""), "\n") 
 }
 draw_box(4,14)
 
@@ -167,4 +185,7 @@ draw_text_box(9,24, "1234")
 prob_presence <- function(numb_sites, p){
   return(rbinom(1, numb_sites, p))
 }
-prob_presence(100, 0.1)
+presence(100, 0.1)
+#Argh! I still cannot get a handle on the question. I get the process. But cannot link the probability of
+# presence to abundance. Also, the binomial (Bernoulli) is not working. It keeps returning probabilities
+# greater than 1.0. Four hours of playing later...
