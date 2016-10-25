@@ -184,21 +184,13 @@ draw_text_box(9,24, "1234")
 presence <- function(p){
   return(rbinom(1, 1, p))
 }
-print(presence(0.5))
+#print(presence(0.5))
 #OK - I think that is giving me what I want for first step
+#But now we need to jump to next step. If present, simulate abundance with 
 
-# Why don't I start with something simpler
-# Does the following simulate tossing a coin?
-present <- function(p){
-  if((rbinom(1, 1, p))){ #try to find out what 2nd argument means? It cannot be what r help claims
-                         # I am getting very conflicting explanations for that second argument
-    return(TRUE)
-  }else{
-    return(FALSE)
+abundance <- name <- function(p, lam) {
+  if(rbinom(1, 1, p) == 1){
+    return(rpois(1, lam))
   }
 }
-if(present(0.5)){
-  print("heads")
-}else{
-  print("tails")
-}
+abundance(0.5, 100)# I think that is working.Not sure if this is how you want it implemented
