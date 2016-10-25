@@ -183,9 +183,7 @@ draw_text_box(9,24, "1234")
 
 
 prob_presence <- function(numb_sites, p){
-  return((rbinom(1, numb_sites, p))/numb_sites)
+  return(sum(rbinom(numb_sites, 1, p))/numb_sites)
 }
-prob_presence(100, 0.1) #That gives me what I asked for. But not sure it is what I really want!
-# OK. Now I am pretty sure I understand binomila distributions. I totally get dbinom
-# but total fail to get rbinom. Play more and see if you can return vectors for this
-#
+print(prob_presence(100, 0.1))
+#OK - I thinkthat is giving me what I want. Whew
