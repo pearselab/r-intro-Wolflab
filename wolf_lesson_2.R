@@ -186,9 +186,9 @@ presence <- function(p){
 }
 #print(presence(0.5))
 #OK - I think that is giving me what I want for first step
-#But now we need to jump to next step. If present, simulate abundance with 
+#But now we need to hurdle to next step. If present, simulate abundance with 
 
-abundance <- name <- function(p, lam) {
+abundance <- function(p, lam) {
   if(rbinom(1, 1, p) == 1){
     return(rpois(1, lam))
   }
