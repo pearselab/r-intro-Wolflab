@@ -181,9 +181,24 @@ draw_text_box(9,24, "1234")
 # is drawn from a Poisson with a given λ. Hint: there is no Bernoulli distribution in R, but the Bernoulli
 # is a special case of what distribution?...
 
-
-prob_presence <- function(numb_sites, p){
-  return(sum(rbinom(numb_sites, 1, p))/numb_sites)
+presence <- function(p){
+  return(rbinom(1, 1, p))
 }
-print(prob_presence(100, 0.1))
-#OK - I thinkthat is giving me what I want. Whew
+print(presence(0.5))
+#OK - I think that is giving me what I want for first step
+
+# Why don't I start with something simpler
+# Does the following simulate tossing a coin?
+present <- function(p){
+  if((rbinom(1, 1, p))){ #try to find out what 2nd argument means? It cannot be what r help claims
+                         # I am getting very conflicting explanations for that second argument
+    return(TRUE)
+  }else{
+    return(FALSE)
+  }
+}
+if(present(0.5)){
+  print("heads")
+}else{
+  print("tails")
+}
