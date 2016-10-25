@@ -183,9 +183,9 @@ draw_text_box(9,24, "1234")
 
 
 prob_presence <- function(numb_sites, p){
-  return(rbinom(1, numb_sites, p))
+  return((rbinom(1, numb_sites, p))/numb_sites)
 }
-presence(100, 0.1)
-#Argh! I still cannot get a handle on the question. I get the process. But cannot link the probability of
-# presence to abundance. Also, the binomial (Bernoulli) is not working. It keeps returning probabilities
-# greater than 1.0. Four hours of playing later...
+prob_presence(100, 0.1) #That gives me what I asked for. But not sure it is what I really want!
+# OK. Now I am pretty sure I understand binomila distributions. I totally get dbinom
+# but total fail to get rbinom. Play more and see if you can return vectors for this
+#
