@@ -18,5 +18,5 @@ race <- function(first, second){
 }
 
 #Q3.2
-useless_information = list("empty")
+location_1 = list(lat = 23.4, long = 45.34)
 class(useless_information) <- "point"
