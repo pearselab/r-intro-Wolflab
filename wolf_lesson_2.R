@@ -125,6 +125,21 @@ d = get_pop_growth_list(final_time,a,b,c)
 
 plot(d,type="o", col = ifelse(d < a,'black',ifelse(b, 'blue', "red")), xlab="Generation", ylab = "population size") # that was easy
 
+#Here is how Karen Mock did it - she made a vector of time intervals, then looped across them and used them in the plot
+# Clever:
+GompFun <- function (a,b,c,d) { # a,b,c, constants, d = max time
+  t <- 0
+  pop_vector <- 0
+  time_span <- c(1:d)
+  for (i in time_span) {
+    t <- c(t,i) # incrementing to make a vector
+    pop_size <- a*exp(-b*exp(-c*i)) # within-function variable
+    pop_vector <-  c(pop_vector, pop_size) # incrementing to make a vector
+  }
+  plot(t, pop_vector, type = "l")
+}
+GompFun(.22,6,.5,10)
+
 #pop_size_over_time(final_time,a,b,c)
 # 8. You are beginning to suspect the biologist is taking advantage of you. Modify your function to plot in
 # purple any y value that’s above a and b. Hint: try putting 3==3 & 2==2 and 3==4 | 2==2 into an if
