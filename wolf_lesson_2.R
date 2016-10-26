@@ -191,6 +191,8 @@ presence <- function(p){
 abundance <- function(p, lam) {
   if(rbinom(1, 1, p) == 1){
     return(rpois(1, lam))
+  }else{
+    return(0)
   }
 }
 abundance(0.5, 100.3)# I think that is working.Not sure if this is how you want it implemented
@@ -203,3 +205,5 @@ abundance(0.5, 100.3)# I think that is working.Not sure if this is how you want 
 # I am not sure of the input for this. Do I have a list of lists for each species? 
 # p and lambda for each species. Then I run my function n times for each species, 
 # where n is the number of sites?
+# could run simulation for each species for each site. Or maybe better to run set first param of rpois
+# to number of sites?
