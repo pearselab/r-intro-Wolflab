@@ -193,4 +193,13 @@ abundance <- function(p, lam) {
     return(rpois(1, lam))
   }
 }
-abundance(0.5, 100)# I think that is working.Not sure if this is how you want it implemented
+abundance(0.5, 100.3)# I think that is working.Not sure if this is how you want it implemented
+
+# 13. An ecologist really likes your hurdle function (will you never learn?). Write them a function that simulates
+# lots of species (each with their own p and λ) across n sites. Return the results in a matrix where each
+# species is a column, and each site a row (this is the standard used for ecology data in R).
+
+# So we input what? output is simulating each species once, so one abundance value?
+# I am not sure of the input for this. Do I have a list of lists for each species? 
+# p and lambda for each species. Then I run my function n times for each species, 
+# where n is the number of sites?
