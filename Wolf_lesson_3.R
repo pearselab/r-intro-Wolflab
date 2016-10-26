@@ -1,3 +1,4 @@
+#Q3.1
 pussy <- list(length=20, weight=10, breed="Bristol")
 class(pussy) <- "feline" # I don't want to use "cat" because I'll get confused with the method "cat"
 
@@ -15,3 +16,7 @@ race <- function(first, second){
   print("Second feline won!")
   return(second)
 }
+
+#Q3.2
+useless_information = list("empty")
+class(useless_information) <- "point"
