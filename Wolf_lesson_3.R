@@ -16,7 +16,17 @@ race <- function(first, second){
   print("Second feline won!")
   return(second)
 }
-
+new.feline <- function(length, weight, breed){
+  output <- list(weight=weight, breed=breed)
+  class(output) <- "feline"
+  return(output)
+}
 #Q3.2
 location_1 = list(lat = 23.4, long = 45.34)
-class(useless_information) <- "point"
+class(location_1) <- "point"
+
+new.point <- function(lat = lat, long = long){
+  output <- list(lat = lat, long = long)
+  class(output) <- "point"
+  return(output)
+}
