@@ -5,3 +5,13 @@ print.feline <- function(x, ...){
   cat("This ", x$breed, "weighs ", x$weight, "kg\n")
 }
 
+race <- function(first, second){
+  if(!inherits(first, "feline") | !inherits(second, "feline"))
+    stop("You haven’t given me two felines!")
+  if(first$weight < second$weight){
+    print("First feline won!")
+    return(first)
+  }
+  print("Second feline won!")
+  return(second)
+}
