@@ -30,3 +30,5 @@ new.point <- function(lat = lat, long = long){
   class(output) <- "point"
   return(output)
 }
+new.point(location_2(11,13))
+          
