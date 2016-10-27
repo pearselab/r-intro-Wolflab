@@ -232,13 +232,17 @@ abundance(0.5, 100.3)# I think that is working.Not sure if this is how you want 
 # Try to input and test file:
 pathway <- "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/"
 filename <- paste(pathway, "species_list.csv", sep = '')
-species_data <- read.csv(filename, header = TRUE)
+species_data <- read.csv(filename, header = TRUE)#, as.is = TRUE )
 head(species_data, 10)#Phew
-for (species in species_data){
-  cat(species, "\n")
-}
+#print(species_data[1,])
+#print(4 * (species_data[2,2]))
+#print(nrow(species_data))
+
 # Well Well! OK - data got read in and I can see by typing head. But cannot access data in loop (yet)
 # Very hard to tell from the help menu, but maybe (?) species_data now exists as a data frame. OK - but now
-# I must figure out how to loop through rows of a data frame. If I know how to work with dara frames I could
-# probably avoid looping. Accorsinf to the little bit of info that R provides, all input goes in as string 
-# (like Python), but why is first col coming out as muneric?  Weird.  Keep playing.
+# I must figure out how to loop through rows of a data frame. Now need to see if I can access the data. I probably 
+# don't need a loop. But I think in loops.  Sorry
+
+for(species in nrow(species_data)){
+  print(species[1])
+}
