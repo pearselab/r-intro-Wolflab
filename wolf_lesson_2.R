@@ -222,3 +222,23 @@ abundance(0.5, 100.3)# I think that is working.Not sure if this is how you want 
 # where n is the number of sites?
 # could run simulation for each species for each site. Or maybe better to run set first param of rpois
 # to number of sites?
+
+# Decided, after discussion with collaborators, if said ecologist cannot write code, then they may have the input
+# in a csv format. So this code expects a csv input with a header and three columns: 1. species (a species name includes
+# a genus, followed by a space, followed by the specific epithet - the space should not be a problem since it 
+# is one character in the string. col 2 is probability of presence (p) and 3. Lambda for abundance (given presence)
+# Start out simply with file in same path as script (must learn how to control path in R!)
+
+# Try to input and test file:
+pathway <- "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/"
+filename <- paste(pathway, "species_list.csv", sep = '')
+species_data <- read.csv(filename, header = TRUE)
+head(species_data, 10)#Phew
+for (species in species_data){
+  cat(species, "\n")
+}
+# Well Well! OK - data got read in and I can see by typing head. But cannot access data in loop (yet)
+# Very hard to tell from the help menu, but maybe (?) species_data now exists as a data frame. OK - but now
+# I must figure out how to loop through rows of a data frame. If I know how to work with dara frames I could
+# probably avoid looping. Accorsinf to the little bit of info that R provides, all input goes in as string 
+# (like Python), but why is first col coming out as muneric?  Weird.  Keep playing.
