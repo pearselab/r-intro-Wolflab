@@ -1,0 +1,12 @@
+Species,p,lambda
+Viola adunca,0.001,200
+Pinus ponderosa,0.55,500
+PseusoTsua menziesii,0.5,7000
+Artemisia tridentata,0.99,1000000
+Oncorhynchus clarki,0.01,1000
+Bos taurus,0.88,800
+Sus scrofa,0.02,400
+Myrmica rubra,0.9,1000000
+poa pratensis,0.99,4000000
+Bromus tectorum,0.95,300000
+Isatis tinctoria,0.9,670
