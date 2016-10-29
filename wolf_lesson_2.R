@@ -88,12 +88,21 @@ for (i in 1:20){
 # where y is population size, t is time, a and b are parameters, and e is the exponential function. Write
 # them a function that calculates population size at any time for any values of its parameters.
 
+#First here is Marley's code in case I can help her:
+gompertz<-function(time, a, b, c){
+  y<-a*exp(-b*exp(-c*time))
+  return(y)
+}
+
 pop_size_at_t <- function(t, a, b, c){
   y = a*(exp(-b*(exp(-c*t))))
   return(y)
 }
-print(pop_size_at_t(194,20,33,22))
+print(pop_size_at_t(4,20,33,1))
+print(gompertz(4, 20, 33, 1))
+
 # Well, I think the above is working, but have some doubts
+# Marley's works as mine. Doubts caused by not finding arguments that would help testing. Got those eventually.
 
 # 5. The biologist likes your function so much they want you to write another function that plots the progress
 # of the population over a given length of time. Write it for them.
@@ -232,19 +241,47 @@ abundance <- function(p, lam) {
 # Try to input and test file:
 pathway <- "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/"
 filename <- paste(pathway, "species_list.csv", sep = '')
-species_data <- read.csv(filename, header = TRUE, as.is = TRUE )
+# Above two rows not used if input file in same dir as script (need to know how to control this)
+# This can be taken care of in final version as function that takes number of sites and path to file
+species_data <- read.csv("species_list.csv", header = TRUE, as.is = TRUE )
 head(species_data, 10)#Phew
-#print(species_data[1,])
-#print(4 * (species_data[2,2]))
-#print(nrow(species_data))
+#print(species_data[1,])# test row index
+#print(4 * (species_data[2,2])) # test that number is not character
+#print(nrow(species_data)) # check number of rows
 # Good I can index data frame
 
-for(i in 1:nrow(species_data)){
-  species <- species_data[i,1]
-  p <- species_data[i,2]
-  lam <- species_data[i,3]
-  ab <- abundance(p, lam)
-  cat(species, ab, sep = " ", "\n")
+# for(i in 1:nrow(species_data)){
+#   species <- species_data[i,1]
+#   p <- species_data[i,2]
+#   lam <- species_data[i,3]
+#   ab <- abundance(p, lam)
+#   cat(species, ab, sep = " ", "\n")
+# }
+
+get_abundances_for_site <- function(species_data){
+  output <- c()
+  for(i in 1:nrow(species_data)){
+    species <- species_data[i,1]
+    p <- species_data[i,2]
+    lam <- species_data[i,3]
+    ab <- abundance(p, lam)
+    info <- list(species, ab)
+    output <- c(output,info)
+    #cat(species, ab, sep = " ", "\n")
+  }
+  return(output)
 }
 
 # Now I need to loop over sites
+# Ask Will about data frames. Seems silly to loop over a date frame or even a matrix
+
+
+#Now do this as a function using a matrix:
+# sim.comm <- function(spp.lam, spp.p, spp.names, n.sites){
+#   #Make a matrix that you're going to output
+#   #Loop over all the species
+#   #Use your species simulation function and put that in the right row in your matrix
+#   #End loop
+#   #Do any cleanup you want on the matrix and return
+# }
+
