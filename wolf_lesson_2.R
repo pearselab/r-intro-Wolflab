@@ -275,11 +275,11 @@ get_abundances_for_site <- function(species_data){
 #   #Do any cleanup you want on the matrix and return
 # }
 #Here is the overriding function to get matrix:
-get_abundance_matrix <-function(my.file = "./species_list.csv", number_of_sites){
+get_abundance_matrix <-function(my.file = "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/species_list.csv", number_of_sites){
   species_data <- read.csv(my.file, header = TRUE, as.is = TRUE )
   numb_species <- length(get_abundances_for_site(species_data)[,1])#count species
-  abundance_matrix <- matrix(nrow = number_of_sites, ncol = )#make matrix
-  abundance_matrix[1] <- get_abundances_for_site(species_data)[,1] #Still trying to get species into column 1
+  abundance_matrix <- matrix(nrow = number_of_sites, ncol = numb_species)#make matrix
+  abundance_matrix[,1] <- get_abundances_for_site(species_data)[,1] #Still trying to get species into column 1
   for(i in number_of_sites){
     if(i > 1){ # ignore first colun because this is species list
       abundance_matrix[,1] <- get_abundances_for_site[,2]# get abundance vector into matrix
@@ -287,7 +287,7 @@ get_abundance_matrix <-function(my.file = "./species_list.csv", number_of_sites)
   }
   return(abundance_matrix)
 }
-print(get_abundance_matrix("./species_list.csv", 3))
+print(get_abundance_matrix(number_of_sites =  3))
 # Note wil Will: I tried really hard to loop over species as the outer loop, as you suggest but I just kept getting
 # tripped up. So I went back to looping over sites, and almost got it working. Note that this fails when I run this
 # from within Rstudio, but works when from command line (cannot find the file). I double checked file locations.
@@ -316,7 +316,7 @@ sim.lost.prof.dist <- function(n){
   }
   return(dist.vec)
 }
-#plot(sim.lost.prof.dist(100),type="o" )
+#plot(sim.lost.prof.dist(100),type="o")
 
 #ok - I will try to plot position in space
 # I cheated a bit on this one - I looked at Mallory's to see how to plot lat and long!
