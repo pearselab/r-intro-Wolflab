@@ -300,10 +300,10 @@ print(get_abundance_matrix("./species_list.csv", 3))
 # random, Normally-distributed distance in latitude and longitude in each interval. Could you simulate this
 # process 100 times and plot it for him?
 
-#Not sure what to plot so I plotted distance to origin. Is this correct? I tried really 
-# to plot position as lat long but could not get anythingt to work
+# Not sure what to plot so I plotted distance to origin. Is this correct? I tried really 
+# to plot position as lat long but could not get anything to work
 
-sim.lost.prof <- function(n){
+sim.lost.prof.dist <- function(n){
   lat <- 0
   long <- 0
   dist.vec <- c()
@@ -316,8 +316,24 @@ sim.lost.prof <- function(n){
   }
   return(dist.vec)
 }
-plot(sim.lost.prof(100),type="o" )
+#plot(sim.lost.prof.dist(100),type="o" )
 
-
+#ok - I will try to plot position in space
+# I cheated a bit on this one - I looked at Mallory's to see how to plot lat and long!
+sim.lost.prof.point <- function(n){
+  lat <- 0
+  long <- 0
+  lat.vec <- c()
+  long.vec <- c()
+  while(i <= n){
+    lat <- lat + rnorm(1, mean = 0, sd = 1)
+    long <- long + rnorm(1, mean = 0, sd = 1)
+    lat.vec <- c(lat.vec, lat)
+    long.vec <- c(long.vec, long)
+    i= (i+1)
+  }
+  plot(lat.vec, long.vec, type = "l", lty=3)
+}
+sim.lost.prof.point(100)
 
 
