@@ -302,6 +302,9 @@ print(get_abundance_matrix(number_of_sites =  3))
 
 # Not sure what to plot so I plotted distance to origin. Is this correct? I tried really 
 # to plot position as lat long but could not get anything to work
+# Also, I had no information about what the mean and standard deviation should be on the movement
+# Which is strange. I just went with the defaults, but I had no logical reason for doing that
+# 
 
 sim.lost.prof.dist <- function(n){
   lat <- 0
@@ -337,28 +340,31 @@ sim.lost.prof.point <- function(n){
 #sim.lost.prof.point(100)
 
 # let's assume that distance intervals are in 10 metres increments.
-#1609 metres to a mile 5 miles = 8045 = 804.5 units of distance
+# 1609 metres to a mile 5 miles = 8045 = 804.5 units of distance
+# but I am setting this to 34.5 metres just for testing
 time_to_dead_prof <- function(n){
   lat <- 0
   long <- 0
   dist.to.origin <- 0
   count <- 0
-  while(dist.to.origin < 10){
+  while(dist.to.origin < 34.5){
     lat <- lat + rnorm(1, mean = 0, sd = 1)
     long <- long + rnorm(1, mean = 0, sd = 1)
     dist.to.origin <- sqrt((lat*lat) + (long*long))
-    print(dist.to.origin)
-    count = count + 1
+    #print(dist.to.origin)
+    count <- count + 1
     if(count > n){
       print("prof still wondering")
       break
     }
-    return(count)
   }
-  #return("nothing happening")
+  cat("it took", (count*5), "minutes before professor fell off cliff")
 }
 # Here n is the max number of 5 min intervals you wish to simulate the process before
 # you decide that you no longer care about life of said professor
-print(time_to_dead_prof(1000))
+time_to_dead_prof(1000)
+# ok, I do see the problem with this. Even if you go to the full max loops it still says
+# that professor fell off cliff after n*5 minutes
+# easy fix: move the cat statement to an if loop (if dist.to.origin > xx)
 
 
