@@ -238,18 +238,8 @@ abundance <- function(p, lam) {
 # is one character in the string. col 2 is probability of presence (p) and 3. Lambda for abundance (given presence)
 # Start out simply with file in same path as script (must learn how to control path in R!)
 
-# Try to input and test file:
-pathway <- "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/"
-filename <- paste(pathway, "species_list.csv", sep = '')
-# Above two rows not used if input file in same dir as script (need to know how to control this)
-# This can be taken care of in final version as function that takes number of sites and path to file
-species_data <- read.csv("species_list.csv", header = TRUE, as.is = TRUE )
-head(species_data, 10)#Phew
-#print(species_data[1,])# test row index
-#print(4 * (species_data[2,2])) # test that number is not character
-#print(nrow(species_data)) # check number of rows
-# Good I can index data frame
 
+#This works:
 # for(i in 1:nrow(species_data)){
 #   species <- species_data[i,1]
 #   p <- species_data[i,2]
@@ -284,4 +274,50 @@ get_abundances_for_site <- function(species_data){
 #   #End loop
 #   #Do any cleanup you want on the matrix and return
 # }
+#Here is the overriding function to get matrix:
+get_abundance_matrix <-function(my.file = "./species_list.csv", number_of_sites){
+  species_data <- read.csv(my.file, header = TRUE, as.is = TRUE )
+  numb_species <- length(get_abundances_for_site(species_data)[,1])#count species
+  abundance_matrix <- matrix(nrow = number_of_sites, ncol = )#make matrix
+  abundance_matrix[1] <- get_abundances_for_site(species_data)[,1] #Still trying to get species into column 1
+  for(i in number_of_sites){
+    if(i > 1){ # ignore first colun because this is species list
+      abundance_matrix[,1] <- get_abundances_for_site[,2]# get abundance vector into matrix
+    }
+  }
+  return(abundance_matrix)
+}
+print(get_abundance_matrix("./species_list.csv", 3))
+# Note wil Will: I tried really hard to loop over species as the outer loop, as you suggest but I just kept getting
+# tripped up. So I went back to looping over sites, and almost got it working. Note that this fails when I run this
+# from within Rstudio, but works when from command line (cannot find the file). I double checked file locations.
+# I know I still have a problem with the matrix dimensions, but I cannot find it. In retrospect I should have stuck
+# with the data.frame and simply converted that to a matrix
+
+# 14. Professor Savitzky approaches you with a delicate problem. A member of faculty became disoriented
+# during fieldwork, and is now believed to be randomly wandering somewhere in the desert surrounding
+# Logan. He is modelling their progress through time in five minute intervals, assuming they cover a
+# random, Normally-distributed distance in latitude and longitude in each interval. Could you simulate this
+# process 100 times and plot it for him?
+
+#Not sure what to plot so I plotted distance to origin. Is this correct? I tried really 
+# to plot position as lat long but could not get anythingt to work
+
+sim.lost.prof <- function(n){
+  lat <- 0
+  long <- 0
+  dist.vec <- c()
+  while(i <= n){
+    lat <- lat + rnorm(1, mean = 0, sd = 1)
+    long <- long + rnorm(1, mean = 0, sd = 1)
+    dist.to.origin <- sqrt((lat*lat) + (long*long))
+    dist.vec <- c(dist.vec, dist.to.origin)
+    i= (i+1)
+  }
+  return(dist.vec)
+}
+plot(sim.lost.prof(100),type="o" )
+
+
+
 
