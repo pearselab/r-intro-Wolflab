@@ -334,6 +334,31 @@ sim.lost.prof.point <- function(n){
   }
   plot(lat.vec, long.vec, type = "l", lty=3)
 }
-sim.lost.prof.point(100)
+#sim.lost.prof.point(100)
+
+# let's assume that distance intervals are in 10 metres increments.
+#1609 metres to a mile 5 miles = 8045 = 804.5 units of distance
+time_to_dead_prof <- function(n){
+  lat <- 0
+  long <- 0
+  dist.to.origin <- 0
+  count <- 0
+  while(dist.to.origin < 10){
+    lat <- lat + rnorm(1, mean = 0, sd = 1)
+    long <- long + rnorm(1, mean = 0, sd = 1)
+    dist.to.origin <- sqrt((lat*lat) + (long*long))
+    print(dist.to.origin)
+    count = count + 1
+    if(count > n){
+      print("prof still wondering")
+      break
+    }
+    return(count)
+  }
+  #return("nothing happening")
+}
+# Here n is the max number of 5 min intervals you wish to simulate the process before
+# you decide that you no longer care about life of said professor
+print(time_to_dead_prof(1000))
 
 
