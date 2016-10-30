@@ -262,11 +262,7 @@ get_abundances_for_site <- function(species_data){
   return(output)
 }
 
-# Now I need to loop over sites
-# Ask Will about data frames. Seems silly to loop over a date frame or even a matrix
-
-
-#Now do this as a function using a matrix:
+#Now do this as a function using a matrix - from Will:
 # sim.comm <- function(spp.lam, spp.p, spp.names, n.sites){
 #   #Make a matrix that you're going to output
 #   #Loop over all the species
@@ -280,7 +276,7 @@ get_abundance_matrix <-function(my.file = "/Users/Paul13/Dropbox/docs_wolf/Pytho
   numb_species <- length(get_abundances_for_site(species_data)[,1])#count species
   abundance_matrix <- matrix(nrow = number_of_sites, ncol = numb_species)#make matrix
   abundance_matrix[,1] <- get_abundances_for_site(species_data)[,1] #Still trying to get species into column 1
-  for(i in number_of_sites){
+  for(i in 1:number_of_sites){
     if(i > 1){ # ignore first colun because this is species list
       abundance_matrix[,1] <- get_abundances_for_site[,2]# get abundance vector into matrix
     }
@@ -291,7 +287,7 @@ print(get_abundance_matrix(number_of_sites =  3))
 # Note wil Will: I tried really hard to loop over species as the outer loop, as you suggest but I just kept getting
 # tripped up. So I went back to looping over sites, and almost got it working. Note that this fails when I run this
 # from within Rstudio, but works when from command line (cannot find the file). I double checked file locations.
-# I know I still have a problem with the matrix dimensions, but I cannot find it. In retrospect I should have stuck
+# I know I still have a problem with the matrix dimensions. In retrospect I should have stuck
 # with the data.frame and simply converted that to a matrix
 
 # 14. Professor Savitzky approaches you with a delicate problem. A member of faculty became disoriented
@@ -300,26 +296,23 @@ print(get_abundance_matrix(number_of_sites =  3))
 # random, Normally-distributed distance in latitude and longitude in each interval. Could you simulate this
 # process 100 times and plot it for him?
 
-# Not sure what to plot so I plotted distance to origin. Is this correct? I tried really 
-# to plot position as lat long but could not get anything to work
-# Also, I had no information about what the mean and standard deviation should be on the movement
-# Which is strange. I just went with the defaults, but I had no logical reason for doing that
-# 
+
+# I had no information about what the mean and standard deviation should be on the movement
+# Which is strange. I just went with the defaults, but I had no logical reason for doing so
 
 sim.lost.prof.dist <- function(n){
   lat <- 0
   long <- 0
   dist.vec <- c()
-  while(i <= n){
+  for(i in 1:n){
     lat <- lat + rnorm(1, mean = 0, sd = 1)
     long <- long + rnorm(1, mean = 0, sd = 1)
     dist.to.origin <- sqrt((lat*lat) + (long*long))
     dist.vec <- c(dist.vec, dist.to.origin)
-    i= (i+1)
   }
   return(dist.vec)
 }
-#plot(sim.lost.prof.dist(100),type="o")
+plot(sim.lost.prof.dist(100),type="o")
 
 #ok - I will try to plot position in space
 # I cheated a bit on this one - I looked at Mallory's to see how to plot lat and long!
@@ -328,7 +321,8 @@ sim.lost.prof.point <- function(n){
   long <- 0
   lat.vec <- c()
   long.vec <- c()
-  while(i <= n){
+  i <- 0
+  for(i in 1:n){
     lat <- lat + rnorm(1, mean = 0, sd = 1)
     long <- long + rnorm(1, mean = 0, sd = 1)
     lat.vec <- c(lat.vec, lat)
@@ -337,34 +331,26 @@ sim.lost.prof.point <- function(n){
   }
   plot(lat.vec, long.vec, type = "l", lty=3)
 }
-#sim.lost.prof.point(100)
+sim.lost.prof.point(100)
 
-# let's assume that distance intervals are in 10 metres increments.
-# 1609 metres to a mile 5 miles = 8045 = 804.5 units of distance
-# but I am setting this to 34.5 metres just for testing
-time_to_dead_prof <- function(n){
+# let's assume that distance intervals are in miles (must be a fast professor)
+
+time_to_dead_prof <- function(){
   lat <- 0
   long <- 0
   dist.to.origin <- 0
-  count <- 0
-  while(dist.to.origin < 34.5){
+  for(i in 1:200){
     lat <- lat + rnorm(1, mean = 0, sd = 1)
     long <- long + rnorm(1, mean = 0, sd = 1)
     dist.to.origin <- sqrt((lat*lat) + (long*long))
-    #print(dist.to.origin)
-    count <- count + 1
-    if(count > n){
-      print("prof still wondering")
+    if(dist.to.origin > 5){
+      cat("it took", (i*5), "minutes before professor fell off cliff")
       break
     }
   }
-  cat("it took", (count*5), "minutes before professor fell off cliff")
 }
-# Here n is the max number of 5 min intervals you wish to simulate the process before
-# you decide that you no longer care about life of said professor
-time_to_dead_prof(1000)
-# ok, I do see the problem with this. Even if you go to the full max loops it still says
-# that professor fell off cliff after n*5 minutes
-# easy fix: move the cat statement to an if loop (if dist.to.origin > xx)
+# Here 200 is the max number of 5 min intervals Dr. Savitzky wishes to simulate the process
+# before he no longer cares about life of said professor
+time_to_dead_prof()
 
 
