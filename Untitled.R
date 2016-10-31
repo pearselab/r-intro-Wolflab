@@ -1,8 +1,6 @@
-B <- matrix(c(2, 4, 3, 1, 5, 7), nrow=3, ncol=2) 
-#print(B)
-B[1,1] <- 9
+input <- list(1:10, letters[1:6], c(TRUE,FALSE,TRUE))
+#print(lapply (input, length))
 
-#print(B)
+print(mapply(paste, letters[1:3], letters[4:6], letters[7:9]))
 
-p = 0.6
-rbinom(1, 1, p)
+#print(letters[1:3])

@@ -6,7 +6,7 @@ def is_prime(numb):
             answer = False
             break
         else:
-            answer = Tru
+            answer = True
     return answer
  
 # Let us  test            

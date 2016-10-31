@@ -292,7 +292,7 @@ sim.lost.prof.point <- function(n){
   plot(lat.vec, long.vec, type = "l", lty=3)
 }
 sim.lost.prof.point(100)
-
+# Q15 Professor walks off a cliff
 # lets assume that distance intervals are in miles (must be a fast professor)
 
 time_to_dead_prof <- function(){
@@ -304,13 +304,22 @@ time_to_dead_prof <- function(){
     long <- long + rnorm(1, mean = 0, sd = 1)
     dist.to.origin <- sqrt((lat*lat) + (long*long))
     if(dist.to.origin > 5){
-      cat("it took", (i*5), "minutes before professor fell off cliff")
+      #cat("it took", (i*5), "minutes before professor fell off cliff")
+      return(i)
       break
     }
   }
 }
 # Here 200 is the max number of 5 min intervals Dr. Savitzky wishes to simulate the process
 # before he no longer cares about life of said professor
-time_to_dead_prof()
+#time_to_dead_prof()
 
-
+mean.time.to.death <- function(rep){
+  time.vect <- numeric(rep)
+  for(i in 1:rep){
+    time.vect[i] <- time_to_dead_prof()
+  }
+  return(mean(time.vect))
+}
+print(mean.time.to.death(100))
+      
