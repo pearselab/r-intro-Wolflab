@@ -238,66 +238,39 @@ abundance <- function(p, lam) {
 # is one character in the string. col 2 is probability of presence (p) and 3. Lambda for abundance (given presence)
 # Start out simply with file in same path as script (must learn how to control path in R!)
 
+# I will now delete all my old stuff - I should be able to retrieve it by going to older version
+# Attempting Will's approach
 
-#This works:
-# for(i in 1:nrow(species_data)){
-#   species <- species_data[i,1]
-#   p <- species_data[i,2]
-#   lam <- species_data[i,3]
-#   ab <- abundance(p, lam)
-#   cat(species, ab, sep = " ", "\n")
-# }
-
-get_abundances_for_site <- function(species_data){
-  output <- c()
-  for(i in 1:nrow(species_data)){
-    species <- species_data[i,1]
-    p <- species_data[i,2]
-    lam <- species_data[i,3]
-    ab <- abundance(p, lam)
-    info <- list(species, ab)
-    output <- c(output,info)
-    #cat(species, ab, sep = " ", "\n")
-  }
-  return(output)
+#Now get the lists of species, p, lambdas
+get.species.list <- function(my.file = "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/species_list.csv"){
+  species.data <- read.csv(my.file, header = TRUE, as.is = TRUE )
+  return(species.data)
 }
+species.data <- get.species.list()
+species.list <- as.vector(species.data[["Species"]])
+p.list <- as.vector(species.data[["p"]])
+lambda.list <- as.vector(species.data[["lambda"]])
+# OK so far, but I feel I am now running completely blind with three separate vectors
+# I felt I could keep track of items in a data frame
 
-#Now do this as a function using a matrix - from Will:
-# sim.comm <- function(spp.lam, spp.p, spp.names, n.sites){
-#   #Make a matrix that you're going to output
-#   #Loop over all the species
-#   #Use your species simulation function and put that in the right row in your matrix
-#   #End loop
-#   #Do any cleanup you want on the matrix and return
-# }
-#Here is the overriding function to get matrix:
-get_abundance_matrix <-function(my.file = "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/species_list.csv", number_of_sites){
-  species_data <- read.csv(my.file, header = TRUE, as.is = TRUE )
-  numb_species <- length(get_abundances_for_site(species_data)[,1])#count species
-  abundance_matrix <- matrix(nrow = number_of_sites, ncol = numb_species)#make matrix
-  abundance_matrix[,1] <- get_abundances_for_site(species_data)[,1] #Still trying to get species into column 1
-  for(i in 1:number_of_sites){
-    if(i > 1){ # ignore first colun because this is species list
-      abundance_matrix[,1] <- get_abundances_for_site[,2]# get abundance vector into matrix
-    }
-  }
-  return(abundance_matrix)
+# using Will's solution for the output:
+sim.comm <- function(species.list, p.list, lam.list, n.sites){
+  my.abundance.matrix <- matrix(data = 0, nrow = n.sites, ncol = length(species.list))
+  colnames(my.abundance.matrix) <- species.list
+  print(length(species.list))
+  print(my.abundance.matrix)
+  # for(species in species.list){
+  #   
+  # 
+  # }
 }
-print(get_abundance_matrix(number_of_sites =  3))
-# Note wil Will: I tried really hard to loop over species as the outer loop, as you suggest but I just kept getting
-# tripped up. So I went back to looping over sites, and almost got it working. Note that this fails when I run this
-# from within Rstudio, but works when from command line (cannot find the file). I double checked file locations.
-# I know I still have a problem with the matrix dimensions. In retrospect I should have stuck
-# with the data.frame and simply converted that to a matrix
-
-# Will's solution:
-#sim.comm <- function(spp.lam, spp.p, spp.names, n.sites){
-  #Make a matrix that you're going to output
-  #Loop over all the species
-  #Use your species simulation function and put that in the right row in your matrix
-  #End loop
-  #Do any cleanup you want on the matrix and return
-#}
+sim.comm(species.list, p.list, lam.list, 4)
+#Make a matrix that you're going to output
+# Loop over all the species
+# Use your species simulation function and put that in the right row in your matrix
+# End loop
+# Do any cleanup you want on the matrix and return
+# }
 
 
 
@@ -326,7 +299,7 @@ sim.lost.prof.dist <- function(n){
 plot(sim.lost.prof.dist(100),type="o")
 
 #ok - I will try to plot position in space
-# I cheated a bit on this one - I looked at Mallory's to see how to plot lat and long!
+# I cheated a bit on this one - I looked at Mallorys to see how to plot lat and long!
 sim.lost.prof.point <- function(n){
   lat <- 0
   long <- 0
@@ -344,7 +317,7 @@ sim.lost.prof.point <- function(n){
 }
 sim.lost.prof.point(100)
 
-# let's assume that distance intervals are in miles (must be a fast professor)
+# lets assume that distance intervals are in miles (must be a fast professor)
 
 time_to_dead_prof <- function(){
   lat <- 0

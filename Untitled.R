@@ -1,9 +1,5 @@
-get.species.list <- function(my.file = "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/species_list.csv"){
-  species.data <- read.csv(my.file, header = TRUE, as.is = TRUE )
-  return(species.data)
-}
+B <- matrix(c(2, 4, 3, 1, 5, 7), nrow=3, ncol=2) 
+print(B)
+B[1,1] <- 9
 
-species.list <- (c(species_data["Species"]))
-print(species.list)
-p.list <- (c(species_data["p"]))
-print(p.list)
+print(B)
