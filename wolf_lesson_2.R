@@ -290,6 +290,17 @@ print(get_abundance_matrix(number_of_sites =  3))
 # I know I still have a problem with the matrix dimensions. In retrospect I should have stuck
 # with the data.frame and simply converted that to a matrix
 
+# Will's solution:
+#sim.comm <- function(spp.lam, spp.p, spp.names, n.sites){
+  #Make a matrix that you're going to output
+  #Loop over all the species
+  #Use your species simulation function and put that in the right row in your matrix
+  #End loop
+  #Do any cleanup you want on the matrix and return
+#}
+
+
+
 # 14. Professor Savitzky approaches you with a delicate problem. A member of faculty became disoriented
 # during fieldwork, and is now believed to be randomly wandering somewhere in the desert surrounding
 # Logan. He is modelling their progress through time in five minute intervals, assuming they cover a
