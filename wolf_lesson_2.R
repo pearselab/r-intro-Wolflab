@@ -225,52 +225,53 @@ abundance <- function(p, lam) {
 # lots of species (each with their own p and λ) across n sites. Return the results in a matrix where each
 # species is a column, and each site a row (this is the standard used for ecology data in R).
 
-# So we input what? output is simulating each species once, so one abundance value?
-# I am not sure of the input for this. Do I have a list of lists for each species? 
-# p and lambda for each species. Then I run my function n times for each species, 
-# where n is the number of sites?
-# could run simulation for each species for each site. Or maybe better to run set first param of rpois
-# to number of sites?
-
-# Decided, after discussion with collaborators, if said ecologist cannot write code, then they may have the input
-# in a csv format. So this code expects a csv input with a header and three columns: 1. species (a species name includes
-# a genus, followed by a space, followed by the specific epithet - the space should not be a problem since it 
-# is one character in the string. col 2 is probability of presence (p) and 3. Lambda for abundance (given presence)
-# Start out simply with file in same path as script (must learn how to control path in R!)
-
 # I will now delete all my old stuff - I should be able to retrieve it by going to older version
 # Attempting Will's approach
+
+#Now get the lists of species, p, lambdas
+
+abundance <- function(p, lam) {
+  if(rbinom(1, 1, p) == 1){
+    return(rpois(1, lam))
+  }else{
+    return(0)
+  }
+}
 
 #Now get the lists of species, p, lambdas
 get.species.list <- function(my.file = "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/species_list.csv"){
   species.data <- read.csv(my.file, header = TRUE, as.is = TRUE )
   return(species.data)
 }
-species.data <- get.species.list()
-species.list <- as.vector(species.data[["Species"]])
-p.list <- as.vector(species.data[["p"]])
-lambda.list <- as.vector(species.data[["lambda"]])
+species.data <- get.species.list() # Just get data from csv file into data frame
+species.list <- as.vector(species.data[["Species"]]) # Make species list from species in data frame
+p.list <- as.vector(species.data[["p"]]) # Make p list from p in data frame
+lam.list <- as.vector(species.data[["lambda"]]) # Make lambda list from lambdas in data frame
+#print(lam.list)
 # OK so far, but I feel I am now running completely blind with three separate vectors
-# I felt I could keep track of items in a data frame
+# I felt I could keep better track of items in a data frame where I could use a useful index
+# I also have no idea how I can test this in a matrix
 
-# using Will's solution for the output:
+# Will's solution:
 sim.comm <- function(species.list, p.list, lam.list, n.sites){
-  my.abundance.matrix <- matrix(data = 0, nrow = n.sites, ncol = length(species.list))
-  colnames(my.abundance.matrix) <- species.list
-  print(length(species.list))
-  print(my.abundance.matrix)
-  # for(species in species.list){
-  #   
-  # 
-  # }
+  my.abundance.matrix <- matrix(data = 0, nrow = n.sites, ncol = length(species.list)) # make empty matrix
+  colnames(my.abundance.matrix) <- species.list # assign column names from the species list
+  #print(my.abundance.matrix) # just checking - empty matrix good
+  for(k in 1:length(species.list)){ # Argh - still don't know why I am looping through species first. Really hard to track
+    # I really want to loop through sites first. But I'll go with it.
+    for(j in 1:n.sites){ # now looping across n.sites
+      my.abundance.matrix[j,k] <- abundance(p.list[k], lam.list[k])# now trying to get abundance
+      # for said species by indexing from p.list and lambda.list
+      # also now very hard to index correctly
+    }
+  }
+  return(my.abundance.matrix)
 }
-sim.comm(species.list, p.list, lam.list, 4)
-#Make a matrix that you're going to output
-# Loop over all the species
-# Use your species simulation function and put that in the right row in your matrix
-# End loop
-# Do any cleanup you want on the matrix and return
-# }
+print(sim.comm(species.list, p.list, lam.list, 6))
+# cannot get any information from traceback: "Error during wrapup: missing value where TRUE/FALSE needed" 
+#rm(list = ls())
+
+
 
 
 
