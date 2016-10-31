@@ -314,8 +314,9 @@ time_to_dead_prof <- function(){
 # before he no longer cares about life of said professor
 #time_to_dead_prof()
 
+#Note to Will: I preallocated with c rather than numeric. Is that OK?
 mean.time.to.death <- function(rep){
-  time.vect <- numeric(rep)
+  time.vect <- c(rep)
   for(i in 1:rep){
     time.vect[i] <- time_to_dead_prof()
   }
