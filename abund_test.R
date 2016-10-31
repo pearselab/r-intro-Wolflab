@@ -16,22 +16,14 @@ species.data <- get.species.list() # Just get data from csv file into data frame
 species.list <- as.vector(species.data[["Species"]]) # Make species list from species in data frame
 p.list <- as.vector(species.data[["p"]]) # Make p list from p in data frame
 lam.list <- as.vector(species.data[["lambda"]]) # Make lambda list from lambdas in data frame
-#print(p.list)
-# OK so far, but I feel I am now running completely blind with three separate vectors
-# I felt I could keep better track of items in a data frame where I could use a useful index
-# I also have no idea how I can test this in a matrix
 
-# Will's solution:
 sim.comm <- function(species.list, p.list, lam.list, n.sites){
   my.abundance.matrix <- matrix(data = 0, nrow = n.sites, ncol = length(species.list)) # make empty matrix
   colnames(my.abundance.matrix) <- species.list # assign column names from the species list
   #print(my.abundance.matrix) # just checking - empty matrix good
-  for(k in 1:length(species.list)){ # Argh - still don't know why I am looping through species first. Really hard to track
-                                # I really want to loop through sites first. But I'll go with it.
+  for(k in 1:length(species.list)){ 
     for(j in 1:n.sites){ # now looping across n.sites
-      my.abundance.matrix[j,k] <- abundance(p.list[k], lam.list[k])# now trying to get abundance
-                          # for said species by indexing from p.list and lambda.list
-                          # also now very hard to index correctly
+      my.abundance.matrix[j,k] <- abundance(p.list[k], lam.list[k])
     }
   }
   return(my.abundance.matrix)
