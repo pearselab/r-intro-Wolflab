@@ -238,6 +238,13 @@ species.list <- as.vector(species.data[["Species"]]) # Make species list from sp
 p.list <- as.vector(species.data[["p"]]) # Make p list from p in data frame
 lam.list <- as.vector(species.data[["lambda"]]) # Make lambda list from lambdas in data frame
 
+dimnames(species.data)
+dim (species.data)
+
+# Will: Note that I have not yet added your simplifed version using "with"
+# That's because I still don;t quite get how it is working. I just need to sweat through this a bit
+# I will keep coming back because I can see how useful with can be
+
 sim.comm <- function(species.list, p.list, lam.list, n.sites){
   my.abundance.matrix <- matrix(data = 0, nrow = n.sites, ncol = length(species.list)) # make empty matrix
   colnames(my.abundance.matrix) <- species.list # assign column names from the species list

@@ -79,6 +79,61 @@ a <- c(2, 23, 45, 56, 78, 122)
 diff(a) # Note that there is always one less element, of course
  # Another potentially useful one!
 
+# Next is dim. But erhaps even more useful is dim names
+# Can use this to check dimensions (dim) and col/row names (dimnames) of matrix or data frame
+get.species.list <- function(my.file = "/Users/Paul13/Dropbox/docs_wolf/Python_files/2016_Programming/r-intro-Wolflab/species_list.csv"){
+  species.data <- read.csv(my.file, header = TRUE, as.is = TRUE )
+  return(species.data)
+}
+dimnames(species.data)
+dim (species.data)
+
+# Well this could be very handy to check that everything is copacetic
+
+# rownames, colnames, names - alerady used these. Self explanatory. Don't you just love that!
+rownames(species.data)
+colnames(species.data)
+names(species.data)
+
+# Nice!
+
+# expand.grid
+# "Create a data frame from all combinations of the supplied vectors or factors"
+
+# Similar to itertools in Python. Creates a matric of all combinations of two vectors
+# Maybe
+# lets try:
+
+a <- c(11,12,13,14,14,15)
+b <- c("a", "B", "f")
+c <- expand.grid(a,b)
+c # c is a vector containing 18 elements, each a pair from a and b. All combinations
+# I can't remember when I have used this, but I know I have needed such a tool in Python
+# remember "expand.grid". Note that name is not a clear indication of ow I would likely use it!
+
+# with. I need to master this one I can see. So far finding this very confusing. Looks for other examples
+# Don't start with help menu - That might be useful later when you get it used to this.
+# Now looking at things a bit differently. Might need a rubber duck at some point
+# Check out http://www.statmethods.net/stats/withby.html 
+# also: http://www.endmemo.com/program/R/with.php
+# for some gentler introduction
+# "The with( ) function applys an expression to a dataset" That makes sense to me:
+# Thus, with(mydata, expression(arg1, arg2))
+
+mult.by.three <- function(x){
+  return(x*3)
+}
+my.vect <- c(4,5,6,7,8,9)
+f <- my.vect*3
+f # that was easy
+# Let's try with with
+with(my.vect, mult.by.three()) #arghhh. Failed on 7th attempt. Obviously missing something
+
+#  *******COME BACK TO THIS (ABOVE) ******
+
+
+
+
 
 
 

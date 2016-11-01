@@ -30,8 +30,8 @@ sim.comm <- function(species.list, p.list, lam.list, n.sites){
 ## * easier to read
 ## * require less code
 ## - "with" is in the exercises of lesson 1
-sim.comm(species.data$Species, species.data$p, species.data$lambda, 4)
-with(species.data, sim.comm(Species, p, lambda, 4))
+#print (sim.comm(species.data$Species, species.data$p, species.data$lambda, 4))
+print(with(species.data, sim.comm(Species, p, lambda, 4)))
 ## ...also notice how:
 ## * I'm not using "[[]]" to pull out parts of the data.frame (I'm using "$"), and I'm not coercing anything ("as.vector")
 ## * I'm not explicitly calling "print" on the output as that's done automatically for me
