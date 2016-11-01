@@ -29,9 +29,12 @@ letters[match(characters, letters)]
 letters[characters %in% letters]
 my.list <- list(n=c(1,3,5), c=c("hello","world"), 
                 l=c(TRUE,FALSE,TRUE))
+
 my.list[[1]][2]
+my.list[[3]]
 my.df <- data.frame(n=c(1,3,5), c=c("hello","world", "yuck")
                     , l=c(TRUE,FALSE,TRUE))
+my.df
 my.df[c('n', 'c')]
 my.df[1,]
 my.df[,2:3]

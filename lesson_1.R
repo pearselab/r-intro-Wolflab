@@ -2,34 +2,33 @@
 ## Exercises ###################################
 ################################################
 
+
 # c - concatenate
 #     - takes two (or more) vector and joins them together
 c(1, 2, 3)
 c(c(1,2,3), c(4,5,6))
 #     - they need to be of the same type, though!
-c(1,2, "three")
-
+v <- c(1,2, "three")
+v
 
 #OK - here we go
-# cat in R
-# Well, I thought I understood this until I read the help file. I had already read what c means
-# concatenate. Now I find that cat aloso means concatenate. 
-# would be nice if different functions had different names
-# cat seems to join things and send the joined stuff to screen.  Let's try:
+# cat in R - concatenates items to screen (like a print statement)
 cat("hello", " world")
 # now:
 x = c("hello", " world")
 x
-#ok - this is starting to make a little sense. So c is concatenate, where as 
-# cat is a print function.
+h = c(2,3,4,4)
+cat(h,x)
+
 # UP next: cbind
 a <- c(1,2,3,4,5,6)
 b <- c("a", "b", "c", "d", "e", "f")
 c <- c(1.1, 2.1, 3.1, 4.4, 5.5, 6.6)
 cbind(a,b,c)
 rbind(a,b,c)
-# I can do this. But the examples in the help menue make no sense becasue they are trying to cbind
-# things that don't exists yet. I'll juust keep it simple for now.
+# I can do this. Descriptions in help menu is good
+# But the examples in the help menu seem strange becasue they are trying to cbind
+# things that don't exists yet. I'll just keep it simple for now.
 m1 <- matrix(1:9, nrow=3, ncol = 3)
 m2 <- matrix(34:42,nrow=3, ncol = 3)
 m3 <- matrix(54:70, ncol=3, nrow=4)
@@ -41,11 +40,52 @@ rbind(m1,m3)
 # Must have same number of cols to rbind matrices
 
 
+#col is the vector of integers describing the 
+# create an identity 5-by-5 matrix
+x <- matrix(0, nrow = 5, ncol = 5)
+# now,for elements where row is col (diaganols), enter 1. Clever
+x[row(x) == col(x)] <- 1
+x
+# extract an off-diagonal of a matrix
+ma <- matrix(1:12, 3, 4)
+ma
+ma[row(ma) == col(ma) + 1]
+# OK, I guess. Could be useful in a matrix?
+ma[col(ma) == 3] # Looks like you can also index
+ma[,3] # same thing, of course
+ma[row(ma) == col(ma)] <- 17
+ma
+ma[ma[,3] == ma[3,]] <- 33
+ma # Same thing by just using the index. Cannot see how row and col used differently
+# This means that I do not fully understand how to use row and col.  Needs attention!
+#  *******COME BACK TO THIS (ABOVE) ******
+
+# cut
+# This one is strange in that it is easier to explain in words than by example. Syntax complex
+# because lots of things to do. So only check out when needed. Essenatially, use when you want to 
+# convert numeric data to categorical. You can use cut to chop out data within sertain ranges
+# into differnet categories. Nice control of intervals and limits. 
+
+# diff
+
+# first note that the help menu for this refers to another tool: cumsum
+# cumulative sums:
+y <- (cumsum(1:10))
+y # see how each element is simply a sum of the previous ones. Handy! Remember that!
+
+# diff just takes the differnces. But let's try with a less contrived example:
+
+a <- c(2, 23, 45, 56, 78, 122)
+diff(a) # Note that there is always one less element, of course
+ # Another potentially useful one!
+
+
+
+
 ################################################
 ## Bonus exercises #############################
 ################################################
 
-# Paul is adding some uselss text now
 
 bonus.text <- "It was the best of times, it was the worst of times, it was the age of
 wisdom, it was the age of foolishness, it was the epoch of belief, it
@@ -56,3 +96,11 @@ were all going direct to Heaven, we were all going direct the other
 way- in short, the period was so far like the present period, that
 some of its noiosiest authorities insisted on its being received, for
 good or for evil, in the superlative degree of comparison only."
+
+
+#All instances of “the”:
+print(gregexpr("\\bthe\\b", bonus.text, ignore.case = TRUE)) 
+# but how to contol the output? Nothing in help
+
+#What lines end with vowels
+print(gregexpr("\n", bonus.text, ignore.case = TRUE))
