@@ -34,7 +34,7 @@ ggplot() +
    labs(x="Sample number", y="% of genome")
 
 
-dev.off()
+#dev.off()
 
 
 

@@ -123,14 +123,36 @@ c # c is a vector containing 18 elements, each a pair from a and b. All combinat
 mult.by.three <- function(x){
   return(x*3)
 }
-my.vect <- c(4,5,6,7,8,9)
-f <- my.vect*3
-f # that was easy
-# Let's try with with
-with(my.vect, mult.by.three()) #arghhh. Failed again. Obviously missing something
+
+# first need to make data.frame (see https://www.datacamp.com/community/tutorials/15-easy-solutions-data-frame-problems-r#gs.umaJIPA)
+Died.At <- c(22,40,72,41)
+Writer.At <- c(16, 18, 36, 36)
+First.Name <- c("John", "Edgar", "Walt", "Jane")
+Second.Name <- c("Doe", "Poe", "Whitman", "Austen") 
+writers_df <- data.frame(Died.At, Writer.At, First.Name, Second.Name)
+writers_df
+with(writers_df, mult.by.three(Died.At)) 
+# Note that first argument must be list of df
+# try with list
+new.list <- list(2, 3, 4, 5, 6, 7)
+with(new.list, mult.by.three[1])
+# My problem is that all the example I can find are data frames. Which is strange
+# because grabbing data from a data frame is obvious (to me)
+# but how do you pull the items from a list, as above?
 
 #  *******COME BACK TO THIS (ABOVE) ******
 
+# library
+# this seems to load a library that is not part of the main R package
+# library must first be installed:
+# type install.packages("ggplot2") into console. Easy
+# look at REPEAT_CODE.R for examples..
+
+# jitter
+# really nice examples and explanation at http://www.endmemo.com/program/R/jitter.php
+# check out other endmemo stuff!
+# jitter adds noise to numeric object
+jitter(3)# [1] 2.997801
 
 
 
