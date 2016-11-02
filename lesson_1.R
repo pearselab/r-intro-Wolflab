@@ -127,7 +127,7 @@ my.vect <- c(4,5,6,7,8,9)
 f <- my.vect*3
 f # that was easy
 # Let's try with with
-with(my.vect, mult.by.three()) #arghhh. Failed on 7th attempt. Obviously missing something
+with(my.vect, mult.by.three()) #arghhh. Failed again. Obviously missing something
 
 #  *******COME BACK TO THIS (ABOVE) ******
 
